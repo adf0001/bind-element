@@ -4,7 +4,8 @@
 "use strict";
 
 var formatError = require("format-error-tool");
-var ele = require("element-tool");
+var ele = require("ele-tool");
+var ele_id = require("ele-id");
 var query_by_name_path = require("query-by-name-path");
 
 var script_tool = require("script-tool");
@@ -115,7 +116,7 @@ var bindElement = function (el, obj, bindItem) {
 	//arguments
 
 	el = ele(el);
-	var elId = ele.id(el);
+	var elId = ele_id(el);
 
 	if (typeof bindItem === "string") bindItem = Array.prototype.slice.call(arguments, 2);
 
@@ -319,7 +320,7 @@ var bindElementArray = function (el, obj, bindItemArray) {
 	var i, imax = bindItemArray.length, bi, ret, namePath, lastBi;
 
 	var nm = {			//name mapping;
-		"": ele.id(elLast)	//map "" to entry element
+		"": ele_id(elLast)	//map "" to entry element
 	};
 
 	for (i = 0; i < imax; i++) {
@@ -329,7 +330,7 @@ var bindElementArray = function (el, obj, bindItemArray) {
 
 			elLast = query_by_name_path(el, namePath);
 			if (!elLast) return formatError("bind name path unfound", namePath, bi);
-			nm[namePath] = ele.id(elLast);
+			nm[namePath] = ele_id(elLast);
 			lastName = namePath;
 			continue;
 		}
