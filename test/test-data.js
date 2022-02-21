@@ -1,7 +1,7 @@
 
 //global variable, for html page, refer tpsvr @ npm.
 bind_element = require("../bind-element.js");
-ele = require("ele-tool");
+ele = require("get-element-by-id");
 add_css_text = require("./add-css-text.js");
 dom_document_tool = require("dom-document-tool");
 

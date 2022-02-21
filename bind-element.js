@@ -4,7 +4,7 @@
 "use strict";
 
 var formatError = require("format-error-tool");
-var ele = require("ele-tool");
+var ele = require("get-element-by-id");
 var ele_id = require("ele-id");
 var query_by_name_path = require("query-by-name-path");
 
