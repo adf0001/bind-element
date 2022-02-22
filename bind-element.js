@@ -13,9 +13,8 @@ var findWithFilter = script_tool.findWithFilter,
 	mapValue = script_tool.mapValue,
 	enclosePropertyDescriptor = script_tool.enclosePropertyDescriptor;
 
-var dom_document_tool = require("dom-document-tool");
-var observeSingleMutation = dom_document_tool.observeSingleMutation,
-	dispatchEventByName = dom_document_tool.dispatchEventByName;
+var observe_single_mutation = require("observe-single-mutation");
+var dispatch_event_by_name = require("dispatch-event-by-name");
 
 /*
 	bind item:
@@ -186,7 +185,7 @@ var bindElement = function (el, obj, bindItem) {
 			var attrName = (type === "attr") ? typeItem : type;
 			if (attrName === "css") attrName = "style";
 
-			observeSingleMutation(el, attrName,
+			observe_single_mutation(el, attrName,
 				function (mutationItem) { return memberValue.apply(memberThis || this, [mutationItem, memberOption]); }
 			);
 			return true;
@@ -206,7 +205,7 @@ var bindElement = function (el, obj, bindItem) {
 			);
 
 			if (biDirection) {
-				observeSingleMutation(el, typeItem,
+				observe_single_mutation(el, typeItem,
 					function (mutationItem) { obj[member] = mapValue(jsValueMapper, mutationItem.target.getAttribute(mutationItem.attributeName) || ""); }
 				);
 			}
@@ -224,7 +223,7 @@ var bindElement = function (el, obj, bindItem) {
 			);
 
 			if (biDirection) {
-				observeSingleMutation(el, "style",
+				observe_single_mutation(el, "style",
 					function (mutationItem) { obj[member] = mapValue(jsValueMapper, mutationItem.target.style[typeItem] || ""); }
 				);
 			}
@@ -243,7 +242,7 @@ var bindElement = function (el, obj, bindItem) {
 			);
 
 			if (biDirection) {
-				observeSingleMutation(el, "class",
+				observe_single_mutation(el, "class",
 					function (mutationItem) { obj[member] = mapValue(jsValueMapper, mutationItem.target.classList.contains(typeItem)); }
 				);
 			}
@@ -266,7 +265,7 @@ var bindElement = function (el, obj, bindItem) {
 			el.addEventListener(notifyEvent || "change", bindFunc, memberOption && memberOption.listenerOptions);
 			if (watchJs) {
 				enclosePropertyDescriptor(el, typeItem,
-					function (v) { dispatchEventByName(elId, notifyEvent || "change", 0); }
+					function (v) { dispatch_event_by_name(elId, notifyEvent || "change", 0); }
 				);
 			}
 			return true;
@@ -288,7 +287,7 @@ var bindElement = function (el, obj, bindItem) {
 		}
 		if (watchJs) {
 			enclosePropertyDescriptor(el, typeItem,
-				function (v) { dispatchEventByName(elId, notifyEvent || "change", 0); }
+				function (v) { dispatch_event_by_name(elId, notifyEvent || "change", 0); }
 			);
 		}
 
