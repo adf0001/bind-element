@@ -3,7 +3,7 @@
 bind_element = require("../bind-element.js");
 ele = require("get-element-by-id");
 add_css_text = require("./add-css-text.js");
-dom_document_tool = require("dom-document-tool");
+dispatch_event_by_name = require("dispatch-event-by-name");
 
 module.exports = {
 
@@ -59,19 +59,19 @@ module.exports = {
 			<span class=-ht-cmd onclick=\'alert(myObj.inp_v)\'>get v</span> \
 			<span class=-ht-cmd onclick=\"myObj.inp_v=\'v-\'+(new Date())\">set v</span> \
 			<span class=-ht-cmd onclick=\"alert(ele(\'inp1-id\').value)\">get prop</span> \
-			<span class=-ht-cmd onclick=\"ele(\'inp1-id\').value= \'v2-\'+(new Date());dom_document_tool.dispatchEventByName(\'inp1-id\',\'change\')\" style=\'color:gray;\' title=\'no effect\'>set prop+dispatchEvent()</span> <br>\
+			<span class=-ht-cmd onclick=\"ele(\'inp1-id\').value= \'v2-\'+(new Date());dispatch_event_by_name(\'inp1-id\',\'change\')\" style=\'color:gray;\' title=\'no effect\'>set prop+dispatchEvent()</span> <br>\
 		\
 			<input name=inp2 value=222 id=\'inp2-id\'></input>, \
 			<span class=-ht-cmd onclick=\'alert(myObj.inp_v)\'>get v</span> \
 			<span class=-ht-cmd onclick=\"myObj.inp_v=\'v3-\'+(new Date())\">set v</span> \
 			<span class=-ht-cmd onclick=\"alert(ele(\'inp2-id\').value)\">get prop</span> \
-			<span class=-ht-cmd onclick=\"ele(\'inp2-id\').value= \'v4-\'+(new Date());dom_document_tool.dispatchEventByName(\'inp2-id\',\'change\')\" style=\'color:gray;margin-right:2em;\' title=\'effective, but not recommend, and had better use [set v]\'>set prop+dispatchEvent(change)</span>  //bi-direction<br>\
+			<span class=-ht-cmd onclick=\"ele(\'inp2-id\').value= \'v4-\'+(new Date());dispatch_event_by_name(\'inp2-id\',\'change\')\" style=\'color:gray;margin-right:2em;\' title=\'effective, but not recommend, and had better use [set v]\'>set prop+dispatchEvent(change)</span>  //bi-direction<br>\
 		\
 			<input name=inp3 value=333 id=\'inp3-id\'></input>, \
 			<span class=-ht-cmd onclick=\'alert(myObj.inp_v)\'>get v</span> \
 			<span class=-ht-cmd onclick=\"myObj.inp_v=\'v5-\'+(new Date())\">set v</span> \
 			<span class=-ht-cmd onclick=\"alert(ele(\'inp3-id\').value)\">get prop</span> \
-			<span class=-ht-cmd onclick=\"ele(\'inp3-id\').value= \'v6-\'+(new Date());dom_document_tool.dispatchEventByName(\'inp3-id\',\'input\')\" style=\'color:gray;margin-right:2em;\' title=\'effective, but not recommend, and had better use [set v]\'>set prop+dispatchEvent(input)</span>  //\'input\' event<br>\
+			<span class=-ht-cmd onclick=\"ele(\'inp3-id\').value= \'v6-\'+(new Date());dispatch_event_by_name(\'inp3-id\',\'input\')\" style=\'color:gray;margin-right:2em;\' title=\'effective, but not recommend, and had better use [set v]\'>set prop+dispatchEvent(input)</span>  //\'input\' event<br>\
 		\
 			<input name=inp4 value=444 id=\'inp4-id\'></input>, \
 			<span class=-ht-cmd onclick=\'alert(myObj.inp_v)\'>get v</span> \

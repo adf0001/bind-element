@@ -1,6 +1,6 @@
 {
   "name": "bind-element",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "make binding between dom element and js object",
   "main": "bind-element.js",
   "scripts": {
